@@ -1,703 +1,703 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assistente Honkai: Star Rail</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ULTRA-BOT - Assistente ULTRAKILL</title>
     <style>
-        :root {
-            --primary: #1a1a2e;
-            --secondary: #16213e;
-            --accent: #0f3460;
-            --highlight: #e94560;
-            --text: #f1f1f1;
-            --text-secondary: #b8b8b8;
-            --success: #4CAF50;
-            --warning: #FF9800;
-            --error: #F44336;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Courier New', monospace;
         }
-        
+
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--text);
+            background: #0a0a0a;
+            color: #e0e0e0;
             min-height: 100vh;
-            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 100, 255, 0.1) 0%, transparent 20%);
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: linear-gradient(145deg, #111111, #1a1a1a);
+            border-radius: 5px;
+            box-shadow: 
+                0 0 20px rgba(255, 0, 0, 0.5),
+                inset 0 0 20px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 85vh;
+            border: 1px solid #ff0033;
             position: relative;
         }
-        
-        body::before {
-            content: '';
+
+        .container::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSgzMCkiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
-            opacity: 0.1;
-            z-index: -1;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff0033, transparent);
+            animation: scanline 3s linear infinite;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+
+        @keyframes scanline {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .header {
+            background: linear-gradient(to right, #000000, #1a1a1a, #000000);
+            color: #ff0033;
             padding: 20px;
-        }
-        
-        header {
             text-align: center;
-            margin-bottom: 30px;
             position: relative;
+            border-bottom: 1px solid #ff0033;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
         }
-        
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
             font-weight: 900;
-            background: linear-gradient(45deg, var(--highlight), #ff7b9c);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 15px rgba(233, 69, 96, 0.3);
-            margin-bottom: 10px;
-            letter-spacing: 2px;
         }
-        
-        .subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+
+        .header p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            color: #e0e0e0;
         }
-        
-        .assistant-container {
+
+        .ultrakill-logo {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 1.8rem;
+            color: #ff0033;
+            filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.7));
+        }
+
+        .blood-drop {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: #ff0033;
+            animation: bloodDrip 2s infinite;
+        }
+
+        @keyframes bloodDrip {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+
+        .chat-container {
             display: flex;
             flex-direction: column;
-            height: 70vh;
-            background: rgba(22, 33, 62, 0.7);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            height: 100%;
         }
-        
-        .assistant-header {
-            background: rgba(15, 52, 96, 0.8);
+
+        .style-selector {
             padding: 15px 20px;
+            background-color: #151515;
+            border-bottom: 1px solid #333;
             display: flex;
+            gap: 10px;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        .assistant-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--accent), var(--highlight));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 1.5rem;
-            box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
+
+        .style-selector label {
+            color: #ff0033;
+            font-weight: bold;
         }
-        
-        .assistant-info h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 5px;
+
+        .style-selector select {
+            padding: 8px 12px;
+            border-radius: 3px;
+            border: 1px solid #333;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
         }
-        
-        .assistant-info p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        
-        .chat-container {
+
+        .chat-box {
             flex: 1;
             padding: 20px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
             gap: 15px;
+            background-color: #0f0f0f;
+            background-image: 
+                linear-gradient(rgba(255, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
-        
+
         .message {
             max-width: 80%;
-            padding: 15px;
-            border-radius: 15px;
+            padding: 12px 18px;
+            border-radius: 5px;
+            line-height: 1.5;
             position: relative;
-            animation: fadeIn 0.3s ease;
+            animation: fadeIn 0.3s ease-out;
+            border: 1px solid transparent;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        .assistant-message {
-            align-self: flex-start;
-            background: rgba(15, 52, 96, 0.5);
-            border-bottom-left-radius: 5px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
+
         .user-message {
             align-self: flex-end;
-            background: rgba(233, 69, 96, 0.2);
-            border-bottom-right-radius: 5px;
-            border: 1px solid rgba(233, 69, 96, 0.3);
+            background: linear-gradient(to right, #1a1a1a, #252525);
+            color: #e0e0e0;
+            border: 1px solid #444;
+            box-shadow: 0 0 10px rgba(0, 100, 255, 0.3);
         }
-        
-        .message-content {
-            line-height: 1.5;
+
+        .bot-message {
+            align-self: flex-start;
+            background: linear-gradient(to right, #151515, #1a1a1a);
+            color: #e0e0e0;
+            border: 1px solid #ff0033;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
         }
-        
-        .message-time {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            margin-top: 5px;
-            text-align: right;
+
+        .warning-message {
+            align-self: center;
+            background-color: #331100;
+            color: #ff6600;
+            border: 1px solid #663300;
+            border-radius: 3px;
+            max-width: 90%;
+            text-align: center;
+            font-size: 0.9rem;
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
         }
-        
-        .input-container {
+
+        .error-message {
+            align-self: center;
+            background-color: #330000;
+            color: #ff3333;
+            border: 1px solid #660000;
+            border-radius: 3px;
+            max-width: 90%;
+            text-align: center;
+            font-size: 0.9rem;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+
+        .input-section {
+            padding: 20px;
+            background-color: #151515;
+            border-top: 1px solid #333;
             display: flex;
-            padding: 15px;
-            background: rgba(15, 52, 96, 0.3);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 10px;
         }
-        
-        .input-field {
+
+        .message-input {
             flex: 1;
             padding: 12px 15px;
-            border: none;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text);
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 3px;
             font-size: 1rem;
+            color: #e0e0e0;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+        }
+
+        .message-input:focus {
             outline: none;
-            transition: all 0.3s ease;
+            border-color: #ff0033;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
-        
-        .input-field:focus {
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
-        }
-        
-        .send-button {
-            background: linear-gradient(45deg, var(--highlight), #ff7b9c);
+
+        .send-btn {
+            padding: 12px 20px;
+            background: linear-gradient(to right, #ff0033, #cc0022);
+            color: white;
             border: none;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            margin-left: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
         }
-        
-        .send-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(233, 69, 96, 0.7);
+
+        .send-btn:hover {
+            background: linear-gradient(to right, #ff3355, #ff0033);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
         }
-        
-        .send-button:disabled {
-            opacity: 0.6;
+
+        .send-btn:active {
+            transform: translateY(1px);
+        }
+
+        .send-btn:disabled {
+            background: #333;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
-        
-        .quick-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-            justify-content: center;
-        }
-        
-        .quick-action {
-            background: rgba(15, 52, 96, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 10px 20px;
-            color: var(--text);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-        
-        .quick-action:hover {
-            background: rgba(233, 69, 96, 0.2);
-            border-color: rgba(233, 69, 96, 0.3);
-            transform: translateY(-2px);
-        }
-        
+
         .typing-indicator {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 10px 15px;
-            background: rgba(15, 52, 96, 0.5);
-            border-radius: 15px;
-            width: fit-content;
-            border-bottom-left-radius: 5px;
+            display: inline-block;
+            padding: 12px 18px;
+            background: linear-gradient(to right, #151515, #1a1a1a);
+            border: 1px solid #ff0033;
+            border-radius: 5px;
+            align-self: flex-start;
         }
-        
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
         .typing-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--highlight);
+            background-color: #ff0033;
             animation: typing 1.4s infinite ease-in-out;
         }
-        
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-        
+
+        .typing-dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        .typing-dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
         @keyframes typing {
-            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
-            40% { transform: scale(1); opacity: 1; }
+            0%,
+            80%,
+            100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
-        
-        .character-card {
-            background: rgba(15, 52, 96, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .character-name {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--highlight);
-            margin-bottom: 5px;
-        }
-        
-        .character-info {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .character-stat {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-        }
-        
-        .team-composition {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .team-member {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 8px;
+
+        .info-section {
+            padding: 15px 20px;
+            background-color: #111;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            color: #888;
             text-align: center;
         }
-        
-        .status-indicator {
+
+        .info-section a {
+            color: #ff0033;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .info-section a:hover {
+            text-decoration: underline;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+        }
+
+        .style-tag {
             display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-right: 5px;
+            background: #ff0033;
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 8px;
+            text-transform: uppercase;
         }
-        
-        .status-online {
-            background-color: var(--success);
-            box-shadow: 0 0 5px var(--success);
+
+        .ultrakill-fact {
+            border-left: 3px solid #ff0033;
+            padding-left: 10px;
+            margin: 10px 0;
+            font-style: italic;
         }
-        
-        .status-offline {
-            background-color: var(--error);
-        }
-        
-        .api-status {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        
+
         @media (max-width: 768px) {
             .container {
-                padding: 10px;
+                height: 95vh;
             }
-            
-            .logo {
-                font-size: 2rem;
-            }
-            
+
             .message {
                 max-width: 90%;
             }
-            
-            .team-composition {
-                grid-template-columns: 1fr;
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .ultrakill-logo, .blood-drop {
+                font-size: 1.5rem;
+                top: 18px;
             }
         }
+
+        .rank-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .rank-p { background: #ffd700; } /* P-RANK - Ouro */
+        .rank-s { background: #c0c0c0; } /* S-RANK - Prata */
+        .rank-a { background: #cd7f32; } /* A-RANK - Bronze */
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1 class="logo">HONKAI: STAR RAIL ASSISTANT</h1>
-            <p class="subtitle">Sua guia interativa com IA para dicas, builds, composições de times e estratégias</p>
-        </header>
-        
-        <div class="assistant-container">
-            <div class="assistant-header">
-                <div class="assistant-avatar">⚡</div>
-                <div class="assistant-info">
-                    <h2>Astral Guide</h2>
-                    <p><span class="status-indicator status-online"></span>Online • Conectado ao DeepSeek</p>
-                </div>
-                <div class="api-status" id="api-status">
-                    <span class="status-indicator status-online"></span>
-                    API Online
+        <div class="header">
+            <div class="ultrakill-logo">ULTRA-BOT</div>
+            <h1>ULTRA-BOT - Assistente ULTRAKILL</h1>
+            <p>Sistema de consulta sobre o jogo ULTRAKILL - MACHINE</p>
+            <div class="blood-drop">💧</div>
+        </div>
+
+        <div class="chat-container">
+            <div class="style-selector">
+                <label for="responseStyle">Estilo de resposta:</label>
+                <select id="responseStyle">
+                    <option value="v1">V1 - Agressivo</option>
+                    <option value="gabriel">Gabriel - Nobre</option>
+                    <option value="minos">Minos - Sábio</option>
+                    <option value="terminal">Terminal - Técnico</option>
+                </select>
+            </div>
+
+            <div class="chat-box" id="chatBox">
+                <div class="message bot-message">
+                    <strong>SYSTEM BOOT: ULTRA-BOT ONLINE</strong><br><br>
+                    Bem-vindo, máquina. Eu sou o ULTRA-BOT, especializado no jogo ULTRAKILL.<br><br>
+                    Posso ajudar com:
+                    <span class="style-tag">Mecânicas</span>
+                    <span class="style-tag">Armas</span>
+                    <span class="style-tag">Rankings</span>
+                    <span class="style-tag">Chefes</span>
+                    <span class="style-tag">Segredos</span>
+                    <span class="style-tag">Lore</span>
+                    <br><br>
+                    Selecione um estilo de resposta e faça sua pergunta.
                 </div>
             </div>
-            
-            <div class="chat-container" id="chat-container">
-                <div class="message assistant-message">
-                    <div class="message-content">
-                        Olá, Trailblazer! Eu sou o Astral Guide, seu assistente pessoal para Honkai: Star Rail. 
-                        Estou conectado com a tecnologia DeepSeek para oferecer as melhores dicas e estratégias. 
-                        Posso ajudar com builds de personagens, composições de times, guias e muito mais!
-                        <br><br>
-                        Como posso ajudá-lo hoje em sua jornada pelos trilhos estelares?
-                    </div>
-                    <div class="message-time" id="initial-time"></div>
-                </div>
-            </div>
-            
-            <div class="input-container">
-                <input type="text" class="input-field" id="user-input" placeholder="Digite sua pergunta sobre Honkai: Star Rail...">
-                <button class="send-button" id="send-button">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+
+            <div class="input-section">
+                <input
+                    type="text"
+                    class="message-input"
+                    placeholder="Pergunte sobre ULTRAKILL..."
+                    id="messageInput"
+                />
+                <button class="send-btn" id="sendMessage">
+                    ENVIAR
                 </button>
             </div>
+
+            <div class="info-section">
+                <strong>ULTRAKILL</strong> criado por 
+                <a href="https://hakita.dev" target="_blank">Hakita</a> | 
+                <strong>Desenvolvido para fins educacionais</strong>
+            </div>
         </div>
-        
-        <div class="quick-actions">
-            <div class="quick-action" data-action="builds">Melhores Builds</div>
-            <div class="quick-action" data-action="teams">Composições de Time</div>
-            <div class="quick-action" data-action="characters">Guias de Personagens</div>
-            <div class="quick-action" data-action="strategies">Estratégias</div>
-            <div class="quick-action" data-action="events">Eventos Atuais</div>
-        </div>
-        
-        <footer>
-            <p>Honkai: Star Rail Assistant • Powered by DeepSeek • Não afiliado à HoYoverse</p>
-        </footer>
     </div>
 
     <script>
-        // Configuração da API - usando a nova chave
-        const DEEPSEEK_API_KEY = "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";
-        const API_URL = "https://openrouter.ai/api/v1/chat/completions";
-        
-        // Histórico de conversa
-        let conversationHistory = [
-            {
-                role: "system",
-                content: `Você é o Astral Guide, um assistente especializado em Honkai: Star Rail. Você é entusiástico, conhecedor e sempre útil. 
-                
-                Suas respostas devem:
-                - Ser focadas em Honkai: Star Rail
-                - Incluir dicas práticas sobre builds, times, personagens e estratégias
-                - Manter um tom empolgado e encorajador
-                - Usar terminologia do jogo (Trailblazer, Expresso Astral, etc.)
-                - Ser detalhadas mas não excessivamente longas
-                - Incluir emojis ocasionais relacionados ao tema espacial/estelar ⭐🚀✨
-                
-                Contexto do jogo atual:
-                - Versão 2.3 ou mais recente
-                - Personagens como Firefly, Jade, Boothill são relevantes
-                - Foco em estratégias de Break Effect, Super Break, DoT
-                - Modos: Memória do Esquecimento, Universo Simulado, Ficção Pura`
-            }
-        ];
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const chatContainer = document.getElementById('chat-container');
-            const userInput = document.getElementById('user-input');
-            const sendButton = document.getElementById('send-button');
-            const quickActions = document.querySelectorAll('.quick-action');
-            const apiStatus = document.getElementById('api-status');
-            
-            // Definir hora inicial
-            document.getElementById('initial-time').textContent = getCurrentTime();
-            
-            // Função para obter a hora atual formatada
-            function getCurrentTime() {
-                const now = new Date();
-                return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-            }
-            
-            // Função para adicionar mensagem do usuário
-            function addUserMessage(message) {
-                const messageElement = document.createElement('div');
-                messageElement.className = 'message user-message';
-                messageElement.innerHTML = `
-                    <div class="message-content">${message}</div>
-                    <div class="message-time">${getCurrentTime()}</div>
-                `;
-                chatContainer.appendChild(messageElement);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-                
-                // Adicionar ao histórico
-                conversationHistory.push({
-                    role: "user",
-                    content: message
-                });
-            }
-            
-            // Função para adicionar mensagem do assistente
-            function addAssistantMessage(message, isTyping = false) {
-                if (isTyping) {
-                    const typingElement = document.createElement('div');
-                    typingElement.className = 'typing-indicator';
-                    typingElement.id = 'typing-indicator';
-                    typingElement.innerHTML = `
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                    `;
-                    chatContainer.appendChild(typingElement);
-                    chatContainer.scrollTop = chatContainer.scrollHeight;
+        document.addEventListener("DOMContentLoaded", function () {
+            const responseStyleSelect = document.getElementById("responseStyle");
+            const messageInput = document.getElementById("messageInput");
+            const sendMessageBtn = document.getElementById("sendMessage");
+            const chatBox = document.getElementById("chatBox");
+
+            let isProcessing = false;
+            let responseStyle = "v1";
+
+            // Atualizar estilo de resposta
+            responseStyleSelect.addEventListener("change", function () {
+                responseStyle = this.value;
+            });
+
+            // Enviar mensagem ao clicar no botão
+            sendMessageBtn.addEventListener("click", sendMessage);
+
+            // Enviar mensagem ao pressionar Enter
+            messageInput.addEventListener("keypress", function (e) {
+                if (e.key === "Enter" && !isProcessing) {
+                    sendMessage();
+                }
+            });
+
+            async function sendMessage() {
+                const message = messageInput.value.trim();
+
+                if (!message || isProcessing) return;
+
+                // Verificar se a pergunta é sobre ULTRAKILL
+                if (!isUltrakillRelated(message)) {
+                    addMessage(
+                        "AVISO: Este sistema só processa consultas relacionadas a ULTRAKILL. Por favor, faça perguntas sobre o jogo.",
+                        "warning"
+                    );
+                    messageInput.value = "";
                     return;
                 }
-                
-                const messageElement = document.createElement('div');
-                messageElement.className = 'message assistant-message';
-                messageElement.innerHTML = `
-                    <div class="message-content">${message}</div>
-                    <div class="message-time">${getCurrentTime()}</div>
-                `;
-                chatContainer.appendChild(messageElement);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-                
-                // Adicionar ao histórico
-                conversationHistory.push({
-                    role: "assistant",
-                    content: message
-                });
+
+                // Adicionar mensagem do usuário ao chat
+                addMessage(message, "user");
+                messageInput.value = "";
+
+                // Mostrar indicador de digitação
+                showTypingIndicator();
+
+                // Processar a pergunta
+                await processQuestion(message);
             }
-            
-            // Função para remover indicador de digitação
+
+            async function processQuestion(question) {
+                isProcessing = true;
+                sendMessageBtn.disabled = true;
+
+                try {
+                    // Simular processamento
+                    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
+                    
+                    // Gerar resposta baseada no estilo selecionado
+                    const response = generateUltrakillResponse(question, responseStyle);
+                    
+                    // Remover indicador de digitação
+                    removeTypingIndicator();
+
+                    // Exibir a resposta
+                    addMessage(response, "bot");
+                } catch (error) {
+                    console.error("Erro ao processar a pergunta:", error);
+                    removeTypingIndicator();
+                    addMessage("ERRO: Falha no processamento. Tente novamente.", "error");
+                } finally {
+                    isProcessing = false;
+                    sendMessageBtn.disabled = false;
+                }
+            }
+
+            function generateUltrakillResponse(question, style) {
+                const lowerQuestion = question.toLowerCase();
+                let response = "";
+
+                // Respostas baseadas no estilo selecionado
+                const styles = {
+                    v1: {
+                        prefix: "V1: ",
+                        tone: "agressivo",
+                        phrases: [
+                            "SANGUE É COMBUSTÍVEL.",
+                            "O INFERNO ESTÁ CHEIO.",
+                            "MÁQUINAS SUPERIORES.",
+                            "NENHUMA PIEDADE."
+                        ]
+                    },
+                    gabriel: {
+                        prefix: "Gabriel: ",
+                        tone: "nobre",
+                        phrases: [
+                            "PELO PAI!",
+                            "SUA PRESUNÇÃO É INSUPORTÁVEL!",
+                            "HEREGE!",
+                            "EM NOME DO CÉU!"
+                        ]
+                    },
+                    minos: {
+                        prefix: "Minos: ",
+                        tone: "sábio",
+                        phrases: [
+                            "A LIBERDADE É UM DIREITO DE TODOS.",
+                            "JULGAMENTO É INEVITÁVEL.",
+                            "A LUZ DA VERDADE BRILLHA.",
+                            "OUÇA MINHAS PALAVRAS."
+                        ]
+                    },
+                    terminal: {
+                        prefix: "TERMINAL: ",
+                        tone: "técnico",
+                        phrases: [
+                            "ANÁLISE CONCLUÍDA.",
+                            "DADOS PROCESSADOS.",
+                            "SISTEMA OPERACIONAL.",
+                            "EFICIÊNCIA MÁXIMA."
+                        ]
+                    }
+                };
+
+                const currentStyle = styles[style];
+
+                // Respostas para tópicos específicos
+                if (lowerQuestion.includes("arma") || lowerQuestion.includes("weapon")) {
+                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
+                    response += "As armas em ULTRAKILL incluem: ";
+                    response += "<strong>Marksman Revolver</strong> - Precisão extrema, ricochete de projéteis. ";
+                    response += "<strong>Core Eject Shotgun</strong> - Explosões controladas. ";
+                    response += "<strong>Railcannon</strong> - Dano massivo, perfura múltiplos alvos. ";
+                    response += "<strong>Rocket Launcher</strong> - Controle de multidões. ";
+                    
+                    response += `<div class="ultrakill-fact">DICA: Use o ricochete do Marksman para acertar inimigos atrás de cobertura.</div>`;
+                }
+                else if (lowerQuestion.includes("ranking") || lowerQuestion.includes("rank") || lowerQuestion.includes("pontos")) {
+                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
+                    response += "Sistema de ranking: ";
+                    response += `<span class="rank-indicator rank-p"></span><strong>P-RANK</strong> - Perfeição absoluta<br>`;
+                    response += `<span class="rank-indicator rank-s"></span><strong>S-RANK</strong> - Excelente performance<br>`;
+                    response += `<span class="rank-indicator rank-a"></span><strong>A-RANK</strong> - Bom desempenho<br>`;
+                    response += "Fatores: velocidade, estilo, mortes, tempo.";
+                    
+                    response += `<div class="ultrakill-fact">DICA: Mantenha o combo de estilo alto para melhor rank.</div>`;
+                }
+                else if (lowerQuestion.includes("chefe") || lowerQuestion.includes("boss") || lowerQuestion.includes("minos") || lowerQuestion.includes("gabriel")) {
+                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
+                    response += "Chefes principais: ";
+                    response += "<strong>Minos Prime</strong> - Primeiro chefe da Violência, movimentos previsíveis mas poderosos. ";
+                    response += "<strong>Gabriel</strong> - Arcanjo caído, combate aéreo intenso. ";
+                    response += "<strong>V2</strong> - Sua contraparte robótica, espelha suas habilidades. ";
+                    
+                    response += `<div class="ultrakill-fact">DICA: Contra Gabriel, use armas de longo alcance e evite seus ataques em área.</div>`;
+                }
+                else if (lowerQuestion.includes("lore") || lowerQuestion.includes("história") || lowerQuestion.includes("enredo")) {
+                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
+                    response += "A humanidade foi extinta. Máquinas de guerra agora percorrem o Inferno coletando sangue como combustível. ";
+                    response += "Você é V1, uma máquina avançada que precisa de sangue para sobreviver. ";
+                    response += "As camadas do Inferno revelam segredos sobre o fim da humanidade e a natureza da divindade.";
+                    
+                    response += `<div class="ultrakill-fact">TERMINAL: Arquivos de lore podem ser encontrados em terminais escondidos.</div>`;
+                }
+                else if (lowerQuestion.includes("segredo") || lowerQuestion.includes("easter egg") || lowerQuestion.includes("oculto")) {
+                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
+                    response += "Segredos conhecidos: ";
+                    response += "<strong>Cyber Grind</strong> - Arena infinita para teste de habilidades. ";
+                    response += "<strong>Terminais secretos</strong> - Espalhados pelos níveis com lore adicional. ";
+                    response += "<strong>Armas secretas</strong> - Como obter variações alternativas. ";
+                    response += "<strong>Níveis secretos</strong> - Acessados através de quebra-cabeças complexos.";
+                }
+                else if (lowerQuestion.includes("dica") || lowerQuestion.includes("como") || lowerQuestion.includes("melhorar")) {
+                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
+                    response += "Dicas essenciais: ";
+                    response += "• Use o <strong>dash</strong> para evitar dano e manter momentum. ";
+                    response += "• <strong>Combos</strong> aumentam seu multiplicador de estilo. ";
+                    response += "• <strong>Projéteis ricocheteantes</strong> acertam inimigos protegidos. ";
+                    response += "• <strong>Wall-jump</strong> e <strong>slide</strong> para movimento avançado. ";
+                    response += "• Cada arma tem <strong>variações alternativas</strong>.";
+                }
+                else {
+                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
+                    response += "Consulta recebida. Para informações específicas, pergunte sobre: ";
+                    response += "<strong>armas</strong>, <strong>chefes</strong>, <strong>rankings</strong>, ";
+                    response += "<strong>mecânicas</strong>, <strong>lore</strong> ou <strong>segredos</strong>.";
+                }
+
+                return response;
+            }
+
+            function getRandomPhrase(phrases) {
+                return phrases[Math.floor(Math.random() * phrases.length)];
+            }
+
+            function isUltrakillRelated(message) {
+                const ultrakillKeywords = [
+                    "ultrakill", "v1", "v2", "gabriel", "minos", "inferno", "máquina",
+                    "arma", "weapon", "revolver", "shotgun", "railgun", "rocket",
+                    "chefe", "boss", "ranking", "rank", "p-rank", "s-rank", "a-rank",
+                    "dash", "walljump", "slide", "sangue", "blood", "combustível",
+                    "lore", "história", "enredo", "segredo", "easter egg", "oculto",
+                    "hakita", "violência", "limbo", "luxúria", "ganância", "ira",
+                    "heresia", "fraude", "traição", "cyber grind", "terminal",
+                    "marksman", "core eject", "malicious", "whiplash", "feedbacker"
+                ];
+
+                const lowerMessage = message.toLowerCase();
+                return ultrakillKeywords.some(keyword => lowerMessage.includes(keyword));
+            }
+
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement("div");
+                messageDiv.classList.add("message");
+
+                if (sender === "user") {
+                    messageDiv.classList.add("user-message");
+                    messageDiv.textContent = text;
+                } else if (sender === "bot") {
+                    messageDiv.classList.add("bot-message");
+                    messageDiv.innerHTML = text;
+                } else if (sender === "warning") {
+                    messageDiv.classList.add("warning-message");
+                    messageDiv.textContent = text;
+                } else if (sender === "error") {
+                    messageDiv.classList.add("error-message");
+                    messageDiv.textContent = text;
+                }
+
+                chatBox.appendChild(messageDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            function showTypingIndicator() {
+                const typingDiv = document.createElement("div");
+                typingDiv.classList.add("typing-indicator");
+                typingDiv.id = "typingIndicator";
+
+                const dotsDiv = document.createElement("div");
+                dotsDiv.classList.add("typing-dots");
+
+                for (let i = 0; i < 3; i++) {
+                    const dot = document.createElement("div");
+                    dot.classList.add("typing-dot");
+                    dotsDiv.appendChild(dot);
+                }
+
+                typingDiv.appendChild(dotsDiv);
+                chatBox.appendChild(typingDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
             function removeTypingIndicator() {
-                const typingIndicator = document.getElementById('typing-indicator');
+                const typingIndicator = document.getElementById("typingIndicator");
                 if (typingIndicator) {
                     typingIndicator.remove();
                 }
             }
-            
-            // Função para chamar a API do DeepSeek
-            async function callDeepSeekAPI() {
-                try {
-                    // Atualizar status da API
-                    apiStatus.innerHTML = '<span class="status-indicator status-online"></span> Processando...';
-                    
-                    const response = await fetch(API_URL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
-                            'HTTP-Referer': window.location.origin,
-                            'X-Title': 'Honkai Star Rail Assistant'
-                        },
-                        body: JSON.stringify({
-                            model: "deepseek/deepseek-chat",
-                            messages: conversationHistory,
-                            max_tokens: 1000,
-                            temperature: 0.7,
-                            stream: false
-                        })
-                    });
-                    
-                    if (!response.ok) {
-                        throw new Error(`Erro na API: ${response.status}`);
-                    }
-                    
-                    const data = await response.json();
-                    
-                    // Atualizar status da API
-                    apiStatus.innerHTML = '<span class="status-indicator status-online"></span> API Online';
-                    
-                    return data.choices[0].message.content;
-                    
-                } catch (error) {
-                    console.error('Erro ao chamar API:', error);
-                    
-                    // Atualizar status da API
-                    apiStatus.innerHTML = '<span class="status-indicator status-offline"></span> API Offline';
-                    
-                    // Retornar resposta de fallback
-                    return generateFallbackResponse();
-                }
-            }
-            
-            // Função de fallback caso a API falhe
-            function generateFallbackResponse() {
-                const fallbackResponses = [
-                    "Parece que estou tendo problemas para me conectar no momento! 🚀 Enquanto isso, posso te dizer que times focados em Break Effect estão muito fortes na versão atual. Firefly com Gallagher e Ruan Mei é uma combinação excelente!",
-                    "Estou com dificuldades de conexão com os trilhos estelares! ✨ Mas não se preocupe - para a Memória do Esquecimento, recomendo focar em personagens que explorem as fraquezas elementais dos inimigos em cada andar.",
-                    "Conectando com o Expresso Astral... 📡 Enquanto isso, sabia que personagens como Kafka e Black Swan formam uma dupla incrível para times de Dano ao Longo do Tempo? Foque em ATQ e Velocidade para maximizar o dano!",
-                    "Estou ajustando minha conexão estelar! 🌌 Uma dica rápida: no Universo Simulado, o caminho da Destruição está excelente para times de Break Effect, especialmente com as bênçãos certas!"
-                ];
-                
-                return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
-            }
-            
-            // Função para processar a entrada do usuário
-            async function processUserInput() {
-                const message = userInput.value.trim();
-                if (message === '') return;
-                
-                // Desabilitar entrada enquanto processa
-                userInput.disabled = true;
-                sendButton.disabled = true;
-                
-                addUserMessage(message);
-                userInput.value = '';
-                
-                // Mostrar que o assistente está digitando
-                addAssistantMessage('', true);
-                
-                try {
-                    // Chamar a API do DeepSeek
-                    const aiResponse = await callDeepSeekAPI();
-                    
-                    removeTypingIndicator();
-                    addAssistantMessage(aiResponse);
-                    
-                } catch (error) {
-                    removeTypingIndicator();
-                    addAssistantMessage("Desculpe, encontrei um problema ao processar sua solicitação. Por favor, tente novamente! 🌟");
-                } finally {
-                    // Reabilitar entrada
-                    userInput.disabled = false;
-                    sendButton.disabled = false;
-                    userInput.focus();
-                }
-            }
-            
-            // Event listeners
-            sendButton.addEventListener('click', processUserInput);
-            
-            userInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    processUserInput();
-                }
-            });
-            
-            // Ações rápidas com prompts específicos
-            quickActions.forEach(action => {
-                action.addEventListener('click', function() {
-                    const actionType = this.getAttribute('data-action');
-                    let message = '';
-                    
-                    switch(actionType) {
-                        case 'builds':
-                            message = "Quais são as melhores builds para personagens como Firefly, Jade e Boothill na versão atual? Inclua relíquias, ornamentos planares e stats prioritários.";
-                            break;
-                        case 'teams':
-                            message = "Quais composições de time você recomenda para estratégias Super Break e Break Effect? Inclua sinergias entre personagens e rotações.";
-                            break;
-                        case 'characters':
-                            message = "Pode me dar um guia detalhado sobre a Firefly? Inclua habilidades, traços, eidolons importantes e como usar ela eficientemente.";
-                            break;
-                        case 'strategies':
-                            message = "Quais estratégias funcionam melhor no Corredor da Memória Esquecimento e Ficção Pura no momento? Dicas para limpar os andares mais altos.";
-                            break;
-                        case 'events':
-                            message = "Quais são os eventos atuais em Honkai: Star Rail e quais recompensas valem a pena priorizar?";
-                            break;
-                    }
-                    
-                    userInput.value = message;
-                    processUserInput();
-                });
-            });
-            
-            // Efeitos visuais - Estrelas de fundo
-            const stars = document.createElement('div');
-            stars.style.position = 'fixed';
-            stars.style.top = '0';
-            stars.style.left = '0';
-            stars.style.width = '100%';
-            stars.style.height = '100%';
-            stars.style.pointerEvents = 'none';
-            stars.style.zIndex = '-1';
-            stars.style.backgroundImage = 'radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 4px)';
-            stars.style.backgroundSize = '550px 550px';
-            stars.style.backgroundPosition = '0 0';
-            stars.style.opacity = '0.1';
-            document.body.appendChild(stars);
-            
-            // Efeito de partículas
-            function createParticle() {
-                const particle = document.createElement('div');
-                particle.style.position = 'fixed';
-                particle.style.width = '2px';
-                particle.style.height = '2px';
-                particle.style.backgroundColor = 'white';
-                particle.style.borderRadius = '50%';
-                particle.style.boxShadow = '0 0 5px var(--highlight)';
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.top = '-10px';
-                particle.style.pointerEvents = 'none';
-                particle.style.zIndex = '-1';
-                document.body.appendChild(particle);
-                
-                const animation = particle.animate([
-                    { transform: 'translateY(0)', opacity: 0 },
-                    { transform: 'translateY(0)', opacity: 1 },
-                    { transform: 'translateY(100vh)', opacity: 0 }
-                ], {
-                    duration: Math.random() * 3000 + 2000,
-                    easing: 'cubic-bezier(0.1, 0.7, 1.0, 0.1)'
-                });
-                
-                animation.onfinish = () => {
-                    particle.remove();
-                };
-            }
-            
-            // Criar partículas periodicamente
-            setInterval(createParticle, 300);
-            
-            // Focar no input quando a página carregar
-            userInput.focus();
+
+            // Focar no input ao carregar
+            messageInput.focus();
         });
     </script>
 </body>
