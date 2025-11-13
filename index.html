@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -111,10 +112,62 @@
             height: 100%;
         }
 
-        .style-selector {
+        .api-key-section {
             padding: 15px 20px;
             background-color: #151515;
             border-bottom: 1px solid #333;
+        }
+
+        .api-key-form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .api-key-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 15px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 3px;
+            font-size: 1rem;
+            color: #e0e0e0;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+        }
+
+        .api-key-input:focus {
+            outline: none;
+            border-color: #ff0033;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .api-selector {
+            width: 100%;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .api-selector label {
+            color: #ff0033;
+            font-weight: bold;
+        }
+
+        .api-selector select {
+            padding: 8px 12px;
+            border-radius: 3px;
+            border: 1px solid #333;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .style-selector {
+            padding: 10px 0;
             display: flex;
             gap: 10px;
             align-items: center;
@@ -132,6 +185,29 @@
             background-color: #0a0a0a;
             color: #e0e0e0;
             font-family: 'Courier New', monospace;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            background: linear-gradient(to right, #ff0033, #cc0022);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #ff3355, #ff0033);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
         }
 
         .chat-box {
@@ -348,6 +424,12 @@
             font-style: italic;
         }
 
+        .api-info {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
         @media (max-width: 768px) {
             .container {
                 height: 95vh;
@@ -365,6 +447,10 @@
                 font-size: 1.5rem;
                 top: 18px;
             }
+
+            .api-key-form {
+                flex-direction: column;
+            }
         }
 
         .rank-indicator {
@@ -375,9 +461,23 @@
             margin-right: 5px;
         }
 
-        .rank-p { background: #ffd700; } /* P-RANK - Ouro */
-        .rank-s { background: #c0c0c0; } /* S-RANK - Prata */
-        .rank-a { background: #cd7f32; } /* A-RANK - Bronze */
+        .rank-p { background: #ffd700; }
+        .rank-s { background: #c0c0c0; }
+        .rank-a { background: #cd7f32; }
+
+        .code-block {
+            background-color: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 3px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            color: #e0e0e0;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -390,20 +490,43 @@
         </div>
 
         <div class="chat-container">
-            <div class="style-selector">
-                <label for="responseStyle">Estilo de resposta:</label>
-                <select id="responseStyle">
-                    <option value="v1">V1 - Agressivo</option>
-                    <option value="gabriel">Gabriel - Nobre</option>
-                    <option value="minos">Minos - Sábio</option>
-                    <option value="terminal">Terminal - Técnico</option>
-                </select>
+            <div class="api-key-section">
+                <div class="api-selector">
+                    <label for="apiProvider">API:</label>
+                    <select id="apiProvider">
+                        <option value="gemini">Google Gemini Flash</option>
+                        <option value="deepseek">DeepSeek</option>
+                    </select>
+                </div>
+                <div class="api-key-form">
+                    <input
+                        type="password"
+                        class="api-key-input"
+                        placeholder="Digite sua chave da API..."
+                        id="apiKey"
+                    />
+                    <button class="btn" id="saveApiKey">ATIVAR SISTEMA</button>
+                </div>
+                <div class="api-info" id="apiInfo">
+                    Para Google Gemini: Obtenha uma chave gratuita em
+                    <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>
+                </div>
+                <div class="style-selector">
+                    <label for="responseStyle">Estilo:</label>
+                    <select id="responseStyle">
+                        <option value="v1">V1 - Agressivo</option>
+                        <option value="gabriel">Gabriel - Nobre</option>
+                        <option value="minos">Minos - Sábio</option>
+                        <option value="terminal">Terminal - Técnico</option>
+                    </select>
+                </div>
             </div>
 
             <div class="chat-box" id="chatBox">
                 <div class="message bot-message">
                     <strong>SYSTEM BOOT: ULTRA-BOT ONLINE</strong><br><br>
                     Bem-vindo, máquina. Eu sou o ULTRA-BOT, especializado no jogo ULTRAKILL.<br><br>
+                    Para começar, selecione uma API, insira sua chave e ative o sistema.<br><br>
                     Posso ajudar com:
                     <span class="style-tag">Mecânicas</span>
                     <span class="style-tag">Armas</span>
@@ -411,8 +534,6 @@
                     <span class="style-tag">Chefes</span>
                     <span class="style-tag">Segredos</span>
                     <span class="style-tag">Lore</span>
-                    <br><br>
-                    Selecione um estilo de resposta e faça sua pergunta.
                 </div>
             </div>
 
@@ -422,8 +543,9 @@
                     class="message-input"
                     placeholder="Pergunte sobre ULTRAKILL..."
                     id="messageInput"
+                    disabled
                 />
-                <button class="send-btn" id="sendMessage">
+                <button class="send-btn" id="sendMessage" disabled>
                     ENVIAR
                 </button>
             </div>
@@ -431,24 +553,84 @@
             <div class="info-section">
                 <strong>ULTRAKILL</strong> criado por 
                 <a href="https://hakita.dev" target="_blank">Hakita</a> | 
-                <strong>Desenvolvido para fins educacionais</strong>
+                <strong>Google Gemini:</strong>
+                <a href="https://aistudio.google.com/app/apikey" target="_blank">Obter Chave</a> |
+                <strong>DeepSeek:</strong>
+                <a href="https://platform.deepseek.com/api_keys" target="_blank">Obter Chave</a>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            const apiProviderSelect = document.getElementById("apiProvider");
+            const apiKeyInput = document.getElementById("apiKey");
+            const apiInfo = document.getElementById("apiInfo");
+            const saveApiKeyBtn = document.getElementById("saveApiKey");
             const responseStyleSelect = document.getElementById("responseStyle");
             const messageInput = document.getElementById("messageInput");
             const sendMessageBtn = document.getElementById("sendMessage");
             const chatBox = document.getElementById("chatBox");
 
-            let isProcessing = false;
+            let apiKey = "";
+            let apiProvider = "gemini";
             let responseStyle = "v1";
+            let isProcessing = false;
+
+            // Atualizar informações da API quando o provedor mudar
+            apiProviderSelect.addEventListener("change", function () {
+                apiProvider = this.value;
+                updateApiInfo();
+            });
+
+            function updateApiInfo() {
+                if (apiProvider === "gemini") {
+                    apiInfo.innerHTML =
+                        'Para Google Gemini: Obtenha uma chave gratuita em <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>';
+                    apiKeyInput.placeholder = "Digite sua chave do Google Gemini...";
+                } else {
+                    apiInfo.innerHTML =
+                        'Para DeepSeek: Obtenha uma chave em <a href="https://platform.deepseek.com/api_keys" target="_blank">DeepSeek Platform</a> (pode requerer pagamento)';
+                    apiKeyInput.placeholder = "Digite sua chave do DeepSeek...";
+                }
+            }
 
             // Atualizar estilo de resposta
             responseStyleSelect.addEventListener("change", function () {
                 responseStyle = this.value;
+            });
+
+            // Inicializar informações da API
+            updateApiInfo();
+
+            // Salvar a chave da API
+            saveApiKeyBtn.addEventListener("click", function () {
+                apiKey = apiKeyInput.value.trim();
+
+                if (!apiKey) {
+                    addMessage("ERRO: Por favor, digite uma chave da API válida.", "warning");
+                    return;
+                }
+
+                // Esconder a chave na interface
+                apiKeyInput.type = "password";
+                apiKeyInput.value = "••••••••••••••••";
+                apiKeyInput.disabled = true;
+                saveApiKeyBtn.disabled = true;
+                apiProviderSelect.disabled = true;
+                responseStyleSelect.disabled = true;
+
+                // Ativar campos de mensagem
+                messageInput.disabled = false;
+                sendMessageBtn.disabled = false;
+
+                addMessage(
+                    `SISTEMA ATIVADO: API ${
+                        apiProvider === "gemini" ? "Google Gemini Flash" : "DeepSeek"
+                    } conectada! Estilo: ${getStyleName(responseStyle)}. Agora você pode fazer suas perguntas sobre ULTRAKILL.`,
+                    "bot"
+                );
+                messageInput.focus();
             });
 
             // Enviar mensagem ao clicar no botão
@@ -492,12 +674,14 @@
                 sendMessageBtn.disabled = true;
 
                 try {
-                    // Simular processamento
-                    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
-                    
-                    // Gerar resposta baseada no estilo selecionado
-                    const response = generateUltrakillResponse(question, responseStyle);
-                    
+                    let response;
+
+                    if (apiProvider === "gemini") {
+                        response = await callGeminiAPI(question);
+                    } else {
+                        response = await callDeepSeekAPI(question);
+                    }
+
                     // Remover indicador de digitação
                     removeTypingIndicator();
 
@@ -506,130 +690,140 @@
                 } catch (error) {
                     console.error("Erro ao processar a pergunta:", error);
                     removeTypingIndicator();
-                    addMessage("ERRO: Falha no processamento. Tente novamente.", "error");
+
+                    let errorMessage = "ERRO: Falha no processamento. ";
+
+                    if (error.message.includes("402")) {
+                        errorMessage +=
+                            "A API selecionada requer pagamento. Use o Google Gemini Flash que é gratuito.";
+                    } else if (error.message.includes("401")) {
+                        errorMessage +=
+                            "Chave da API inválida. Verifique sua chave e tente novamente.";
+                    } else if (error.message.includes("429")) {
+                        errorMessage +=
+                            "Limite de requisições excedido. Tente novamente mais tarde.";
+                    } else if (error.message.includes("500")) {
+                        errorMessage +=
+                            "Erro interno do servidor. Tente novamente em alguns instantes.";
+                    } else {
+                        errorMessage += `Detalhes: ${error.message}`;
+                    }
+
+                    addMessage(errorMessage, "error");
                 } finally {
                     isProcessing = false;
                     sendMessageBtn.disabled = false;
                 }
             }
 
-            function generateUltrakillResponse(question, style) {
-                const lowerQuestion = question.toLowerCase();
-                let response = "";
+            async function callGeminiAPI(question) {
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
-                // Respostas baseadas no estilo selecionado
-                const styles = {
-                    v1: {
-                        prefix: "V1: ",
-                        tone: "agressivo",
-                        phrases: [
-                            "SANGUE É COMBUSTÍVEL.",
-                            "O INFERNO ESTÁ CHEIO.",
-                            "MÁQUINAS SUPERIORES.",
-                            "NENHUMA PIEDADE."
-                        ]
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
                     },
-                    gabriel: {
-                        prefix: "Gabriel: ",
-                        tone: "nobre",
-                        phrases: [
-                            "PELO PAI!",
-                            "SUA PRESUNÇÃO É INSUPORTÁVEL!",
-                            "HEREGE!",
-                            "EM NOME DO CÉU!"
-                        ]
-                    },
-                    minos: {
-                        prefix: "Minos: ",
-                        tone: "sábio",
-                        phrases: [
-                            "A LIBERDADE É UM DIREITO DE TODOS.",
-                            "JULGAMENTO É INEVITÁVEL.",
-                            "A LUZ DA VERDADE BRILLHA.",
-                            "OUÇA MINHAS PALAVRAS."
-                        ]
-                    },
-                    terminal: {
-                        prefix: "TERMINAL: ",
-                        tone: "técnico",
-                        phrases: [
-                            "ANÁLISE CONCLUÍDA.",
-                            "DADOS PROCESSADOS.",
-                            "SISTEMA OPERACIONAL.",
-                            "EFICIÊNCIA MÁXIMA."
-                        ]
-                    }
-                };
+                    body: JSON.stringify({
+                        contents: [
+                            {
+                                parts: [
+                                    {
+                                        text: `Você é um assistente especializado no jogo ULTRAKILL. Responda APENAS perguntas relacionadas ao jogo ULTRAKILL, incluindo mecânicas, armas, chefes, rankings, lore, segredos, dicas e estratégias. Use o estilo de ${getStyleName(responseStyle)}.
 
-                const currentStyle = styles[style];
+Contexto do estilo:
+- V1: Agressivo, direto, focado em combate
+- Gabriel: Nobre, dramático, com linguagem elevada  
+- Minos: Sábio, filosófico, calmo
+- Terminal: Técnico, objetivo, como uma máquina
 
-                // Respostas para tópicos específicos
-                if (lowerQuestion.includes("arma") || lowerQuestion.includes("weapon")) {
-                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
-                    response += "As armas em ULTRAKILL incluem: ";
-                    response += "<strong>Marksman Revolver</strong> - Precisão extrema, ricochete de projéteis. ";
-                    response += "<strong>Core Eject Shotgun</strong> - Explosões controladas. ";
-                    response += "<strong>Railcannon</strong> - Dano massivo, perfura múltiplos alvos. ";
-                    response += "<strong>Rocket Launcher</strong> - Controle de multidões. ";
-                    
-                    response += `<div class="ultrakill-fact">DICA: Use o ricochete do Marksman para acertar inimigos atrás de cobertura.</div>`;
-                }
-                else if (lowerQuestion.includes("ranking") || lowerQuestion.includes("rank") || lowerQuestion.includes("pontos")) {
-                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
-                    response += "Sistema de ranking: ";
-                    response += `<span class="rank-indicator rank-p"></span><strong>P-RANK</strong> - Perfeição absoluta<br>`;
-                    response += `<span class="rank-indicator rank-s"></span><strong>S-RANK</strong> - Excelente performance<br>`;
-                    response += `<span class="rank-indicator rank-a"></span><strong>A-RANK</strong> - Bom desempenho<br>`;
-                    response += "Fatores: velocidade, estilo, mortes, tempo.";
-                    
-                    response += `<div class="ultrakill-fact">DICA: Mantenha o combo de estilo alto para melhor rank.</div>`;
-                }
-                else if (lowerQuestion.includes("chefe") || lowerQuestion.includes("boss") || lowerQuestion.includes("minos") || lowerQuestion.includes("gabriel")) {
-                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
-                    response += "Chefes principais: ";
-                    response += "<strong>Minos Prime</strong> - Primeiro chefe da Violência, movimentos previsíveis mas poderosos. ";
-                    response += "<strong>Gabriel</strong> - Arcanjo caído, combate aéreo intenso. ";
-                    response += "<strong>V2</strong> - Sua contraparte robótica, espelha suas habilidades. ";
-                    
-                    response += `<div class="ultrakill-fact">DICA: Contra Gabriel, use armas de longo alcance e evite seus ataques em área.</div>`;
-                }
-                else if (lowerQuestion.includes("lore") || lowerQuestion.includes("história") || lowerQuestion.includes("enredo")) {
-                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
-                    response += "A humanidade foi extinta. Máquinas de guerra agora percorrem o Inferno coletando sangue como combustível. ";
-                    response += "Você é V1, uma máquina avançada que precisa de sangue para sobreviver. ";
-                    response += "As camadas do Inferno revelam segredos sobre o fim da humanidade e a natureza da divindade.";
-                    
-                    response += `<div class="ultrakill-fact">TERMINAL: Arquivos de lore podem ser encontrados em terminais escondidos.</div>`;
-                }
-                else if (lowerQuestion.includes("segredo") || lowerQuestion.includes("easter egg") || lowerQuestion.includes("oculto")) {
-                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
-                    response += "Segredos conhecidos: ";
-                    response += "<strong>Cyber Grind</strong> - Arena infinita para teste de habilidades. ";
-                    response += "<strong>Terminais secretos</strong> - Espalhados pelos níveis com lore adicional. ";
-                    response += "<strong>Armas secretas</strong> - Como obter variações alternativas. ";
-                    response += "<strong>Níveis secretos</strong> - Acessados através de quebra-cabeças complexos.";
-                }
-                else if (lowerQuestion.includes("dica") || lowerQuestion.includes("como") || lowerQuestion.includes("melhorar")) {
-                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
-                    response += "Dicas essenciais: ";
-                    response += "• Use o <strong>dash</strong> para evitar dano e manter momentum. ";
-                    response += "• <strong>Combos</strong> aumentam seu multiplicador de estilo. ";
-                    response += "• <strong>Projéteis ricocheteantes</strong> acertam inimigos protegidos. ";
-                    response += "• <strong>Wall-jump</strong> e <strong>slide</strong> para movimento avançado. ";
-                    response += "• Cada arma tem <strong>variações alternativas</strong>.";
-                }
-                else {
-                    response = `${currentStyle.prefix}${getRandomPhrase(currentStyle.phrases)} `;
-                    response += "Consulta recebida. Para informações específicas, pergunte sobre: ";
-                    response += "<strong>armas</strong>, <strong>chefes</strong>, <strong>rankings</strong>, ";
-                    response += "<strong>mecânicas</strong>, <strong>lore</strong> ou <strong>segredos</strong>.";
+Se a pergunta não for sobre ULTRAKILL, explique educadamente que você só pode ajudar com questões relacionadas ao jogo.
+
+Pergunta: ${question}
+
+Responda no estilo ${getStyleName(responseStyle)}:`
+                                    },
+                                ],
+                            },
+                        ],
+                        generationConfig: {
+                            temperature: 0.8,
+                            maxOutputTokens: 1000,
+                        },
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erro na API: ${response.status}`);
                 }
 
-                return response;
+                const data = await response.json();
+
+                if (data.candidates && data.candidates.length > 0) {
+                    return data.candidates[0].content.parts[0].text;
+                } else {
+                    throw new Error("Resposta da API não contém dados válidos");
+                }
             }
 
-            function getRandomPhrase(phrases) {
-                return phrases[Math.floor(Math.random() * phrases.length)];
+            async function callDeepSeekAPI(question) {
+                const response = await fetch(
+                    "https://api.deepseek.com/v1/chat/completions",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${apiKey}`,
+                        },
+                        body: JSON.stringify({
+                            model: "deepseek-chat",
+                            messages: [
+                                {
+                                    role: "system",
+                                    content: `Você é um assistente especializado no jogo ULTRAKILL. Responda APENAS perguntas relacionadas ao jogo ULTRAKILL. Use o estilo ${getStyleName(responseStyle)}: ${getStyleDescription(responseStyle)}. Se a pergunta não for sobre ULTRAKILL, explique que só pode ajudar com o jogo.`
+                                },
+                                {
+                                    role: "user",
+                                    content: question,
+                                },
+                            ],
+                            max_tokens: 1000,
+                            temperature: 0.8,
+                        }),
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error(`Erro na API: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (data.choices && data.choices.length > 0) {
+                    return data.choices[0].message.content;
+                } else {
+                    throw new Error("Resposta da API não contém dados válidos");
+                }
+            }
+
+            function getStyleName(style) {
+                const styles = {
+                    v1: "V1",
+                    gabriel: "Gabriel", 
+                    minos: "Minos",
+                    terminal: "Terminal"
+                };
+                return styles[style] || "V1";
+            }
+
+            function getStyleDescription(style) {
+                const descriptions = {
+                    v1: "Seja agressivo e direto, como a máquina V1",
+                    gabriel: "Seja nobre e dramático, como o arcanjo Gabriel",
+                    minos: "Seja sábio e filosófico, como o juiz Minos",
+                    terminal: "Seja técnico e objetivo, como um terminal do jogo"
+                };
+                return descriptions[style] || "Seja direto e objetivo";
             }
 
             function isUltrakillRelated(message) {
@@ -641,7 +835,9 @@
                     "lore", "história", "enredo", "segredo", "easter egg", "oculto",
                     "hakita", "violência", "limbo", "luxúria", "ganância", "ira",
                     "heresia", "fraude", "traição", "cyber grind", "terminal",
-                    "marksman", "core eject", "malicious", "whiplash", "feedbacker"
+                    "marksman", "core eject", "malicious", "whiplash", "feedbacker",
+                    "pistol", "shotgun", "nailgun", "railcannon", "rocket launcher",
+                    "style", "combo", "momentum", "parry", "ricochet", "ultraricoshot"
                 ];
 
                 const lowerMessage = message.toLowerCase();
@@ -657,7 +853,10 @@
                     messageDiv.textContent = text;
                 } else if (sender === "bot") {
                     messageDiv.classList.add("bot-message");
-                    messageDiv.innerHTML = text;
+
+                    // Processar a resposta para formatar blocos de código
+                    const formattedText = formatCodeBlocks(text);
+                    messageDiv.innerHTML = formattedText;
                 } else if (sender === "warning") {
                     messageDiv.classList.add("warning-message");
                     messageDiv.textContent = text;
@@ -668,6 +867,16 @@
 
                 chatBox.appendChild(messageDiv);
                 chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            function formatCodeBlocks(text) {
+                // Substituir blocos de código marcados com ``` por elementos pre/code
+                return text.replace(
+                    /```(\w+)?\n([\s\S]*?)```/g,
+                    function (match, language, code) {
+                        return `<div class="code-block"><pre><code>${code.trim()}</code></pre></div>`;
+                    }
+                );
             }
 
             function showTypingIndicator() {
@@ -695,9 +904,6 @@
                     typingIndicator.remove();
                 }
             }
-
-            // Focar no input ao carregar
-            messageInput.focus();
         });
     </script>
 </body>
